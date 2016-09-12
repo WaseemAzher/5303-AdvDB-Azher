@@ -8,32 +8,34 @@
 # Gift_options.mysql
 
 ```
-
 CREATE TABLE IF NOT EXISTS `gift_options` (
+`itemId` int(32) NOT NULL DEFAULT '0',
   `allowGiftWrap` BIT NOT NULL,
   `allowGiftMessage` BIT NOT NULL,
   `allowGiftReceipt` BIT NOT NULL,
-  PRIMARY KEY (`allowGiftWrap`) 
+  PRIMARY KEY (`itemId`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ```
 # image_entities.sql
 
 ```
-
 CREATE TABLE IF NOT EXISTS `image_entities` ( 
+ `itemId` int(32) NOT NULL DEFAULT '0',
   `thumbnailImage` varchar(256) NOT NULL,
   `mediumImage` varchar(256) NOT NULL,
   `largeImage` varchar(256) NOT NULL,
   `entityType` varchar(15) NOT NULL,
-  PRIMARY KEY (`entityType`) 
+  PRIMARY KEY (`itemId`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ```
 # market_place_price.sql
 
 ```
+
 CREATE TABLE IF NOT EXISTS `market_place_price` (
+ `itemId` int(32) NOT NULL DEFAULT '0',
   `price` float(7,3) NOT NULL,
   `sellerInfo` varchar(64) NOT NULL,
   `standardShipRate` float(7,3) NOT NULL,
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `market_place_price` (
   `availableOnline` BIT NOT NULL,
   `clearance` BIT NOT NULL,
   `offerType` varchar(32) NOT NULL,
-  PRIMARY KEY (`price`,`sellerInfo`)
+  PRIMARY KEY (`itemId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ```
