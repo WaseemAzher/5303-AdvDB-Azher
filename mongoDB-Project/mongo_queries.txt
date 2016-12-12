@@ -1,0 +1,122 @@
+Waseem Azher
+M20224139
+
+Azharuddin H Mohammad
+M20222811
+
+****************************************************************************************************************
+
+1. db.yelp.business.find({$or:[{full_address: /89117/}, {full_address: /89122/}]}).count() -- 1083 with just zipcode
+**************************************************************************************************************************
+2. db.yelp.business.find( { "city": "Las Vegas", "categories": "Restaurants" } ).count() -- 4928 with city and categories
+2. db.yelp.business.find({"city":"Las Vegas"}).count() -- 19328 -- with just city
+**************************************************************************************
+3. db.yelp.business.find( { "loc": { "$geoWithin": { "$centerSphere": [ [-80.839186,35.226504] , 5 / 3963.2 ] } } } ).count()
+**************************************************************************************
+4. db.yelp.review.find({"business_id":"hB3kH0NgM5LkEWMnMMDnHw"}).count()
+**************************************************************************************
+5. db.yelp.review.find({"business_id":"hB3kH0NgM5LkEWMnMMDnHw"}, {"stars":"5"}).count()
+**************************************************************************************
+6. 
+
+db.yelp.user.aggregate(
+   [
+     {
+       $project:
+          {
+            year: { $substr: [ "$yelping_since", 2, 2 ] }
+          }
+      }
+   ]
+)
+
+(or)
+
+db.yelp.user.find({ "yelping_since" : {$lte:"2012-01"}}, {"name":true}).pretty().count()
+
+**************************************************************************************
+7.db.yelp.tip.find().sort({likes:-1}).limit(1).pretty()
+**************************************************************************************
+8. db.yelp.user.aggregate(
+   [
+     {
+       $group:
+         {
+           _id: "$user_id",
+           
+           avgreview: { $avg: "$review_count" }
+         }
+     }
+   ]
+)
+**************************************************************************************
+9.db.yelp.user.find( { elite: { $exists: true, $ne: [ ] } } ).count()
+
+
+**************************************************************************************
+10.
+db.yelp.user.aggregate(
+   [
+      {
+         $project: {
+            item: 1,
+            elitesize: { $size: "$elite" }
+         }},
+    
+      { $group: 
+         {
+           _id: "$user_id",
+           maxelite: { $max: "$elitesize" }
+         }
+     }
+  
+   ]
+)
+
+**************************************************************************************
+
+11.
+
+db.yelp.user.aggregate(
+   [
+      {
+         $project: {
+            item: 1,
+            elitesize: { $size: "$elite" }
+         }},
+{ $group: 
+         {
+           _id: null,
+           avg_elite_yrs: { $avg: "$elitesize" }
+         }
+     }
+  
+   ]
+)
+
+
+****************************************************************************************
+Difficult
+
+**************************************************************************************
+2. db.yelp.business.find({$or: [{"full_address" : {$regex : ".75205."}},{"full_address" : {$regex : ".75225."}}]})
+
+
+**************************************************************************************
+
+3. db.yelp.checkin.find({"checkin_info":{$lte:"2-0",$gte:"17-5"}},{"business_id":1}).pretty()
+
+
+**************************************************************************************
+
+5. db.yelp.review.aggregate([{$group:{_id: "$business_id", avgstar:{$avg:"$stars"}}},{$match: {avgstar:{$gt:3.5}}}])
+
+
+
+
+
+
+
+
+
+
