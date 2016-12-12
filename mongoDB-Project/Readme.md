@@ -1,4 +1,5 @@
 
+
 ## Name: Waseem Azher and AzharUddin H Mohammad
 ## Project: Mongo DB
 ## Course: 5303 - Advance Database management Systems
@@ -24,6 +25,8 @@
 4) curl -X GET http://104.236.3.96:5000/reviews/id=hB3kH0NgM5LkEWMnMMDnHw:start=0:limit=20   -- no issues
 
 5) curl -X GET http://104.236.3.96:5000/reviews_5stars/id=hB3kH0NgM5LkEWMnMMDnHw:stars=5:start=0:limit=20  -- Breaking the Server
+
+6) curl -X GET http://104.236.3.96:5000/yelping/start=0:limit=20
 
 7) curl -X GET http://104.236.3.96:5000/most_likes/start=0:limit=20
 
