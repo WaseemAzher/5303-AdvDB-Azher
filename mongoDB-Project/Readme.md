@@ -25,7 +25,7 @@
 
 5) curl -X GET http://104.236.3.96:5000/reviews_5stars/id=hB3kH0NgM5LkEWMnMMDnHw:stars=5:start=0:limit=20  -- Breaking the Server
 
-7) curl -X GET http://104.236.3.96:5000/most_likes/start=0:limit=20 --- URl issue
+7) curl -X GET http://104.236.3.96:5000/most_likes/start=0:limit=20
 
 8) curl -X GET http://104.236.3.96:5000/review_count/   --- no issues
 
