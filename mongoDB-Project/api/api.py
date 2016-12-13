@@ -22,7 +22,7 @@ app = FlaskAPI(__name__)
 CORS(app)
 
 client = pymongo.MongoClient('localhost', 27017)
-db = client['azhar_mongodb']
+db = client['waseem_mongodb']
 businessdb = db['yelp.business']
 reviewdb = db['yelp.review']
 userdb = db['yelp.user']
@@ -53,21 +53,23 @@ def find_zips(args):
     
     zip = []
     zip = args['zip']
-    if 'start' in args.keys():
-        args['start'] = int(args['start'])
-    if 'limit' in args.keys():
-        args['limit'] = int(args['limit'])
     data = []
-    if 'start' in args.keys() and 'limit' in args.keys():
-	    result = businessdb.find({},{"full_address":1,"_id":0}).skip(args['start']).limit(args['limit'])
-    elif 'start' in args.keys():
-        result = businessdb.find({},{"full_address":1,"_id":0}).skip(args['start'])
-    elif 'limit' in args.keys():
-        result = businessdb.find({},{"full_address":1,"_id":0}).limit(args['limit'])
-    else:
-        result = businessdb.find({},{"full_address":1,"_id":0}).limit(20)        
+  
+    # if 'start' in args.keys():
+        # args['start'] = int(args['start'])
+    # if 'limit' in args.keys():
+        # args['limit'] = int(args['limit'])
     
-  ## result = businessdb.find({},{"full_address":1,"_id":0})
+    # if 'start' in args.keys() and 'limit' in args.keys():
+	    # result = businessdb.find({},{"full_address":1,"_id":0}).skip(args['start']).limit(args['limit'])
+    # elif 'start' in args.keys():
+        # result = businessdb.find({},{"full_address":1,"_id":0}).skip(args['start'])
+    # elif 'limit' in args.keys():
+        # result = businessdb.find({},{"full_address":1,"_id":0}).limit(args['limit'])
+    # else:
+     #   result = businessdb.find({},{"full_address":1,"_id":0}).limit(20)        
+    
+    result = businessdb.find({},{"full_address":1,"_id":0})
     for r in result:
         parts = r['full_address'].split(' ')
         target = parts[-1]
@@ -152,17 +154,17 @@ def reviews(args):
 		
 		
     if 'start' in args.keys() and 'limit' in args.keys():
-           result = reviewdb.find({},{"business_id":1,"_id":0}).skip(args['start']).limit(args['limit'])
+           result = reviewdb.find({"business_id":id},{"business_id":1,"_id":0}).skip(args['start']).limit(args['limit'])
     elif 'start' in args.keys():
-          result = reviewdb.find({},{"business_id":1,"_id":0}).skip(args['start'])
+          result = reviewdb.find({"business_id":id},{"business_id":1,"_id":0}).skip(args['start'])
     elif 'limit' in args.keys():
-          result = reviewdb.find({},{"business_id":1,"_id":0}).limit(args['limit'])
+          result = reviewdb.find({"business_id":id},{"business_id":1,"_id":0}).limit(args['limit'])
     else:
-          result = reviewdb.find({},{"business_id":1,"_id":0}).limit(20)  		
+          result = reviewdb.find({"business_id":id},{"business_id":1,"_id":0}).limit(20)  		
 	
    ## result = reviewdb.find({},{"business_id":1,"_id":0})
     for r in result:
-	    if r['business_id']== id:
+	    
 		    data.append(r)  
     return {"data":data}
 """==================================================================================="""
@@ -175,7 +177,7 @@ def reviews_5stars(args):
     args = myParseArgs(args)    
     data = []
     id = args['id']	
-    star = int(args['stars'])
+    star = int(args['num_stars'])
 	
     if 'start' in args.keys():
         args['start'] = int(args['start'])
@@ -199,34 +201,33 @@ def reviews_5stars(args):
     return {"data":data}
 """==================================================================================="""
 
-@app.route("/yelping/<args>", methods=['GET'])
-def yelping(args):
-			
-	if 'skip' in args.keys():
-		args['skip'] = int(args['skip'])
-	if 'limit' in args.keys():
-		args['limit'] = int(args['limit'])
-
-	data = []
-	if 'skip' in args.keys() and 'limit' in args.keys():
-		result = userdb.find({ "yelping_since" : {'$lte':"2012-01"}},{"_id":None,"name":1,"yelping_since":1}).skip(args['skip']).limit(args['limit'])
-	elif 'skip' in args.keys():
-		result = userdb.find({ "yelping_since" : {'$lte':"2012-01"}},{"_id":None,"name":1,"yelping_since":1}).skip(args['skip'])
-	elif 'limit' in args.keys():
-		result = userdb.find({ "yelping_since" : {'$lte':"2012-01"}},{"_id":None,"name":1,"yelping_since":1}).limit(args['limit'])
-	else:
-		result = userdb.find({ "yelping_since" : {'$lte':"2012-01"}},{"_id":None,"name":1,"yelping_since":1}).limit(10)
+@app.route("/yelping/", methods=['GET'])
+def yelping():
+	data = []		
+	# if 'skip' in args.keys():
+	    # args['skip'] = int(args['skip'])
+	# if 'limit' in args.keys():
+		# args['limit'] = int(args['limit'])
 	
+	# if 'start' in args.keys() and 'limit' in args.keys():
+        # result = userdb.find({ "yelping_since" : {"$lte":"2012-01"}}, {"yelping_since":1,"_id":0}).limit(args['limit'])
+	# elif 'start' in args.keys():
+        # result = userdb.find({ "yelping_since" : {"$lte":"2012-01"}}, {"user_id":1,"_id":0}).skip(args['start'])
+    # elif 'limit' in args.keys():
+        # result = userdb.find({ "yelping_since" : {"$lte":"2012-01"}}, {"user_id":1,"_id":0}).limit(args['limit'])
+    # else:
+
+	result = userdb.find({"yelping_since":{"$lte":"2012-01"}},{"yelping_since":1,"_id":0})
 	for r in result:
-		data.append(r)
+	    data.append(r)
 
 	return {"data":data}
 
 
 
 """=================================================================================="""
-@app.route("/most_likes/", methods=['GET'])
-def most_likes():
+@app.route("/most_likes/<args>", methods=['GET'])
+def most_likes(args):
 
     args = myParseArgs(args)    
     data = []
@@ -258,7 +259,7 @@ def review_count():
     
     data = []
 		
-    result = userdb.aggregate([{'$group':{"_id":"user_id",'averageReviewCount':{'$avg':"$review_count"}}}])
+    result = userdb.aggregate([{'$group':{"_id":"$user_id",'averageReviewCount':{'$avg':"$review_count"}}}])
     
     for r in result:
         data.append(r)
@@ -302,21 +303,23 @@ def elite(args):
 def long_elite(args):
 	
 	args = myParseArgs(args)
-
+    
 	if 'start' in args.keys():
 		args['start'] = int(args['start'])
 	if 'limit' in args.keys():
 		args['limit'] = int(args['limit'])
 
 	data = []
-	if 'start' in args.keys() and 'limit' in args.keys():
-		result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).skip(args['start']).limit(args['limit'])
-	elif 'start' in args.keys():
-		result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).skip(args['start'])
-	elif 'limit' in args.keys():
-		result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).limit(args['limit'])
-	else:
-		result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).limit(1)
+	# if 'start' in args.keys() and 'limit' in args.keys():
+		# result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).skip(args['start']).limit(args['limit'])
+	# elif 'start' in args.keys():
+		# result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).skip(args['start'])
+	# elif 'limit' in args.keys():
+		# result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).limit(args['limit'])
+	# else:
+		# result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$user_id",'maxelite': { '$max': "$elitesize" }}}]).limit(1)
+		
+	result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": "$name",'maxelite': { '$max': "$elitesize" }}}])	
 		
 	for r in result:
 		data.append(r)
@@ -331,7 +334,7 @@ def avg_elite():
     
     data = []
 		
-    result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": null,'avg_elite_yrs': { '$avg': "$elitesize" }}}])
+    result = userdb.aggregate([{'$project': {'elitesize': { '$size': "$elite" }}},{ '$group':{"_id": 0,'avg_elite_yrs': { '$avg': "$elitesize" }}}])
     
     for r in result:
         data.append(r)
@@ -433,4 +436,4 @@ def myParseArgs(pairs=None):
     
 
 if __name__ == "__main__":
-    app.run(debug=True,host='104.236.3.96',port=5000)
+    app.run(debug=True,host='107.170.48.163',port=5000)
