@@ -6,7 +6,7 @@ import json
 from pymongo import MongoClient
 from bson import Binary, Code
 
-DATABASENAME = 'azhar_mongodb'
+DATABASENAME = 'waseem_mongodb'
 TEST = False
 
 client = MongoClient('localhost', 27017)
