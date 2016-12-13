@@ -1,5 +1,6 @@
 
 
+
 ## Name: Waseem Azher and AzharUddin H Mohammad
 ## Project: Mongo DB
 ## Course: 5303 - Advance Database management Systems
@@ -7,6 +8,7 @@
 ### Curl Commands to run the Queries.
 
 1) curl -X GET http://107.170.48.163:5000/find_zips/zip=89117,89122
+
   output: Data is printing on the output but limits was creating the problem we commented the limit code..
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -16,12 +18,7 @@
 
  {"data": [{"city": "Las Vegas", "name": "Apex Medical Center"}, {"city": "Las Vegas", "name": "Psychic Eye Book Shops"},
  {"city": "Las Vegas", "name": "Timberlake"}, {"city": "Las Vegas", "name": "Gap"}, {"city": "Las Vegas", "name": "Great Clips"},
- {"city": "Las Vegas", "name": "SuperPawn"}, {"city": "Las Vegas", "name": "Linda Woodson Dermatology"}, {"city": "Las Vegas", "name": "Chianti Cafe"}, 
- {"city": "Las Vegas", "name": "Ken Landow, MD"}, {"city": "Las Vegas", "name": "Terrible Herbst"}, {"city": "Las Vegas", "name": "Re-Bath"},
- {"city": "Las Vegas", "name": "Smith Susan DDS"}, {"city": "Las Vegas", "name": "Gps City"}, {"city": "Las Vegas", "name": "Boulder Station Hotel & Casino"},
- {"city": "Las Vegas", "name": "Lionel J Handler, MD"}, {"city": "Las Vegas", "name": "All American Van & Storage"},
- {"city": "Las Vegas", "name": "LVTS - Used & OEM Automotive Parts"}, {"city": "Las Vegas", "name": "USS Fish N Chips"},
- {"city": "Las Vegas", "name": "Neil Smith's Vegas Guitars Custom Shop"}, {"city": "Las Vegas", "name": "Petco"}]}
+ {"city": "Las Vegas", "name": "SuperPawn"}, {"city": "Las Vegas", "name": "Linda Woodson Dermatology"}, {"city": "Las Vegas", "name": "Chianti Cafe"},{"city": "Las Vegas", "name": "Ken Landow, MD"}, {"city": "Las Vegas", "name": "Terrible Herbst"}, {"city": "Las Vegas", "name": "Re-Bath"},{"city": "Las Vegas", "name": "Smith Susan DDS"}, {"city": "Las Vegas", "name": "Gps City"}, {"city": "Las Vegas", "name": "Boulder Station Hotel & Casino"}, {"city": "Las Vegas", "name": "Lionel J Handler, MD"}, {"city": "Las Vegas", "name": "All American Van & Storage"},{"city": "Las Vegas", "name": "LVTS - Used & OEM Automotive Parts"}, {"city": "Las Vegas", "name": "USS Fish N Chips"},{"city": "Las Vegas", "name": "Neil Smith's Vegas Guitars Custom Shop"}, {"city": "Las Vegas", "name": "Petco"}]}
 --------------------------------------------------------------------------------------------------------------------------------
 3) curl -X GET http://107.170.48.163:5000/closest/lon=-80.839186:lat=35.226504:start=0:limit=20
 
