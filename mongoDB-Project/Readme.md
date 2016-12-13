@@ -7,7 +7,6 @@
 ### Curl Commands to run the Queries.
 
 1) curl -X GET http://107.170.48.163:5000/find_zips/zip=89117,89122
-
   output: Data is printing on the output but limits was creating the problem we commented the limit code..
 -------------------------------------------------------------------------------------------------------------------------------
 
