@@ -1,6 +1,3 @@
-
-
-
 ## Name: Waseem Azher and AzharUddin H Mohammad
 ## Project: Mongo DB
 ## Course: 5303 - Advance Database management Systems
@@ -17,15 +14,15 @@
    output:
 
  {"data": [{"city": "Las Vegas", "name": "Apex Medical Center"}, {"city": "Las Vegas", "name": "Psychic Eye Book Shops"},
- {"city": "Las Vegas", "name": "Timberlake"}, {"city": "Las Vegas", "name": "Gap"}, {"city": "Las Vegas", "name": "Great Clips"},
- {"city": "Las Vegas", "name": "SuperPawn"}, {"city": "Las Vegas", "name": "Linda Woodson Dermatology"}, {"city": "Las Vegas", "name": "Chianti Cafe"},{"city": "Las Vegas", "name": "Ken Landow, MD"}, {"city": "Las Vegas", "name": "Terrible Herbst"}, {"city": "Las Vegas", "name": "Re-Bath"},{"city": "Las Vegas", "name": "Smith Susan DDS"}, {"city": "Las Vegas", "name": "Gps City"}, {"city": "Las Vegas", "name": "Boulder Station Hotel & Casino"}, {"city": "Las Vegas", "name": "Lionel J Handler, MD"}, {"city": "Las Vegas", "name": "All American Van & Storage"},{"city": "Las Vegas", "name": "LVTS - Used & OEM Automotive Parts"}, {"city": "Las Vegas", "name": "USS Fish N Chips"},{"city": "Las Vegas", "name": "Neil Smith's Vegas Guitars Custom Shop"}, {"city": "Las Vegas", "name": "Petco"}]}
+ {"city": "Las Vegas", "name": "Timberlake"}, {"city": "Las Vegas", "name": "Gap"}, {"city": "Las Vegas", "name": 
+ "Great Clips"}, {"city": "Las Vegas", "name": "SuperPawn"}, {"city": "Las Vegas", "name": "Linda Woodson 
+ Dermatology"}, {"city": "Las Vegas", "name": "Chianti Cafe"},{"city": "Las Vegas", "name": "Ken Landow, MD"}, {"city": "Las Vegas", "name": "Terrible Herbst"}, {"city":  "Las Vegas", "name": "Re-Bath"},{"city": "Las Vegas", "name": "Smith Susan DDS"}, {"city": "Las Vegas", "name": "Gps City"}, {"city": "Las Vegas", "name": "Boulder Station Hotel & Casino"}, {"city": "Las Vegas", "name": "Lionel J Handler, MD"}, {"city": "Las Vegas", "name": "All American Van & Storage"},{"city": "Las Vegas", "name": "LVTS - Used & OEM Automotive Parts"}, {"city": "Las Vegas", "name": "USS Fish N Chips"},{"city": "Las Vegas", "name": "Neil Smith's Vegas Guitars Custom Shop"}, {"city": "Las Vegas", "name": "Petco"}]}
 --------------------------------------------------------------------------------------------------------------------------------
 3) curl -X GET http://107.170.48.163:5000/closest/lon=-80.839186:lat=35.226504:start=0:limit=20
 
    output:
   {"data": [{"name": "Budget Blinds"}, {"name": "Sheraton Charlotte Airport Hotel"}, {"name": "Fairpoint Communications"},
-  {"name": "Bank of America Corporate Center Parking"}, {"name": "Avis Rent A Car"}, {"name": "Green's Lunch"}, 
-  {"name": "Charlotte Center City Partners"}, {"name": "Jackson's Java"}, {"name": "Dunhill Hotel"}, 
+  {"name": "Bank of America Corporate Center Parking"}, {"name": "Avis Rent A Car"}, {"name": "Green's Lunch"},  {"name": "Charlotte Center City Partners"}, {"name": "Jackson's Java"}, {"name": "Dunhill Hotel"}, 
   {"name": "McColl Center for Art + Innovation"}, {"name": "McNinch House Restaurant"}, {"name": "Alexander Michael's"}, 
   {"name": "St Peter's Episcopal Church"}, {"name": "Showmars Third Street"}, {"name": "Levine Museum of the New South"}, 
   {"name": "New Creations Inc"}, {"name": "Morton's The Steakhouse"}, {"name": "Matt's Chicago Dog"}, {"name": "Starbucks"}, 
