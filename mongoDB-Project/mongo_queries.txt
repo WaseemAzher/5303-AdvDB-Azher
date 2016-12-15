@@ -1,119 +1,296 @@
 Waseem Azher
+
 M20224139
 
+
+
 Azharuddin H Mohammad
+
 M20222811
+
+
 
 ****************************************************************************************************************
 
-1. db.yelp.business.find({$or:[{full_address: /89117/}, {full_address: /89122/}]}).count() -- 1083 with just zipcode
+
+
+1. db.yelp.business.find({$or:[{full_address: /89117/}, {full_address: /89122/}]}).count()  
+
+Ans. 1083 
 **************************************************************************************************************************
-2. db.yelp.business.find( { "city": "Las Vegas", "categories": "Restaurants" } ).count() -- 4928 with city and categories
-2. db.yelp.business.find({"city":"Las Vegas"}).count() -- 19328 -- with just city
+
+2. db.yelp.business.find( { "city": "Las Vegas", "categories": "Restaurants" } ).count()  
+
+Ans. 4928 with city and categories
+
+2. db.yelp.business.find({"city":"Las Vegas"}).count() 
+
+Ans. 19328 -- with just city
 **************************************************************************************
+
 3. db.yelp.business.find( { "loc": { "$geoWithin": { "$centerSphere": [ [-80.839186,35.226504] , 5 / 3963.2 ] } } } ).count()
+
+Ans. 2780
 **************************************************************************************
+
 4. db.yelp.review.find({"business_id":"hB3kH0NgM5LkEWMnMMDnHw"}).count()
+
+Ans. 20
 **************************************************************************************
+
 5. db.yelp.review.find({"business_id":"hB3kH0NgM5LkEWMnMMDnHw"}, {"stars":"5"}).count()
+
+Ans. 20
 **************************************************************************************
+
 6. 
 
+
+
 db.yelp.user.aggregate(
+
    [
+
      {
+
        $project:
+
           {
+
             year: { $substr: [ "$yelping_since", 2, 2 ] }
+
           }
+
       }
+
    ]
+
 )
+
+
 
 (or)
 
+
+
 db.yelp.user.find({ "yelping_since" : {$lte:"2012-01"}}, {"name":true}).pretty().count()
 
+Ans. 249854
+
 **************************************************************************************
+
 7.db.yelp.tip.find().sort({likes:-1}).limit(1).pretty()
+
+Ans.        {
+        "_id" : ObjectId("581b488b8fb3522e844bf0a3"),
+        "user_id" : "WmAyExqSWoiYZ5XEqpk_Uw",
+        "text" : "License photographer assured me her photos always came out great. That is false! My head looks like something Super Mario stomps on. Greeeeeaaaaaat.",
+        "business_id" : "iTLwGhF-NyHGrgoYzGK7xw",
+        "likes" : 11,
+        "date" : "2015-09-17",
+        "type" : "tip"
+}
+
 **************************************************************************************
+
 8. db.yelp.user.aggregate(
+
    [
+
      {
+
        $group:
+
          {
+
            _id: "$user_id",
+
            
+
            avgreview: { $avg: "$review_count" }
+
          }
+
      }
+
    ]
+
 )
+
+
+Ans. 
+{ "_id" : "DL0S4Ro4KY77akGPbEkrug", "avgreview" : 1 }
+{ "_id" : "JV-CHnvX6qrQzRQOL2yxCA", "avgreview" : 3 }
+{ "_id" : "l5GTCveGC2SP1adAeDb5Sw", "avgreview" : 3 }
+{ "_id" : "uAcPATQyIwb--qZ8gb3Npg", "avgreview" : 1 }
+{ "_id" : "HbALYkupeF3P0HH6OHa-VQ", "avgreview" : 13 }
+{ "_id" : "B5FbMpgMnUonweq59JdoZA", "avgreview" : 5 }
+{ "_id" : "o5ZwzvxQLJ8U4dRERm1OdQ", "avgreview" : 3 }
+{ "_id" : "UjaM7Sm8_Xq2fWB04SNdSA", "avgreview" : 3 }
+{ "_id" : "QHN8WM7C6qci35G0Tr7C0g", "avgreview" : 2 }
+{ "_id" : "TPQM-PeqmbOjWZTWOntUmQ", "avgreview" : 1 }
+{ "_id" : "c06PqT6Wj1-pAuMzD97nWg", "avgreview" : 12 }
+{ "_id" : "HlMmBXX8ncbcwTRV55FOqA", "avgreview" : 2 }
+{ "_id" : "9C0ng6Xfxanb_yTFTLNumw", "avgreview" : 2 }
+{ "_id" : "Ysy4ekmHucM9Dvyyujcygg", "avgreview" : 18 }
+{ "_id" : "lR46gmtix1Ijg6FcRkHMWQ", "avgreview" : 4 }
+{ "_id" : "_kuQRjFRGyAgARTBzOmk-w", "avgreview" : 3 }
+{ "_id" : "1BsVtV5ur9vlkDOC2H4DYA", "avgreview" : 6 }
+{ "_id" : "AgDEty-K-uzsaNEodNpd3g", "avgreview" : 8 }
+{ "_id" : "GKNA1qGwb32C9QYvEGfyuQ", "avgreview" : 2 }
+{ "_id" : "QQq4UYP7AsJ3TB-81_Entg", "avgreview" : 6 }
+Type "it" for more
+
+
+
+
 **************************************************************************************
+
 9.db.yelp.user.find( { elite: { $exists: true, $ne: [ ] } } ).count()
 
 
-**************************************************************************************
-10.
-db.yelp.user.aggregate(
-   [
-      {
-         $project: {
-            item: 1,
-            elitesize: { $size: "$elite" }
-         }},
-    
-      { $group: 
-         {
-           _id: "$user_id",
-           maxelite: { $max: "$elitesize" }
-         }
-     }
-  
-   ]
-)
+Ans. 35796
+
 
 **************************************************************************************
+
+10.
+
+db.yelp.user.aggregate(
+
+   [
+
+      {
+
+         $project: {
+
+            item: 1,
+
+            elitesize: { $size: "$elite" }
+
+         }},
+
+    
+
+      { $group: 
+
+         {
+
+           _id: "$user_id",
+
+           maxelite: { $max: "$elitesize" }
+
+         }
+
+     }
+
+  
+
+   ]
+
+)
+
+Ans. { "_id" : null, "maxelite" : 12 }
+
+
+**************************************************************************************
+
+
 
 11.
 
+
+
 db.yelp.user.aggregate(
+
    [
+
       {
+
          $project: {
+
             item: 1,
+
             elitesize: { $size: "$elite" }
+
          }},
+
 { $group: 
+
          {
+
            _id: null,
+
            avg_elite_yrs: { $avg: "$elitesize" }
+
          }
+
      }
+
   
+
    ]
+
 )
 
 
+Ans. { "_id" : null, "avg_elite_yrs" : 0.16248929439113488 }
+
+
+
 ****************************************************************************************
+
 Difficult
 
+
+
 **************************************************************************************
+
 2. db.yelp.business.find({$or: [{"full_address" : {$regex : ".75205."}},{"full_address" : {$regex : ".75225."}}]})
 
 
+Ans. 
+
+
 **************************************************************************************
+
+
 
 3. db.yelp.checkin.find({"checkin_info":{$lte:"2-0",$gte:"17-5"}},{"business_id":1}).pretty()
 
 
+Ans. 
+
+
 **************************************************************************************
+
+
 
 5. db.yelp.review.aggregate([{$group:{_id: "$business_id", avgstar:{$avg:"$stars"}}},{$match: {avgstar:{$gt:3.5}}}])
 
+Ans. 
 
 
-
+  { "_id" : "HuLzZUBkHEcHk6ETDJIVhQ", "avgstar" : 4 }
+{ "_id" : "h1aZ3B_i83ccUcjgtRfMaA", "avgstar" : 5 }
+{ "_id" : "UByngND8rAr6Qu2il34Qrw", "avgstar" : 4.333333333333333 }
+{ "_id" : "C6_IoaDD3mddplTXdbKGEg", "avgstar" : 4.958333333333333 }
+{ "_id" : "iFX50dGCzWkVyunSZUzoiw", "avgstar" : 5 }
+{ "_id" : "EB7_p4M5whur3KWesXE6gw", "avgstar" : 5 }
+{ "_id" : "YoryL0t3x8T2wfD96Xs6Kw", "avgstar" : 5 }
+{ "_id" : "D-vMDv5NlLb9od6sqXtX8A", "avgstar" : 4.857142857142857 }
+{ "_id" : "DEvoawa1POU-IwJLsqT6-Q", "avgstar" : 5 }
+{ "_id" : "3gfJ5DnJ_xQZzlzeDFL1SQ", "avgstar" : 4.923076923076923 }
+{ "_id" : "wW-bJnmVJRGpRgk5zhpKCg", "avgstar" : 4.947368421052632 }
+{ "_id" : "xAS8d9Gitrtp-lM4kliZvA", "avgstar" : 5 }
+{ "_id" : "YXB9gN_h0QRIF5fcSs8M5w", "avgstar" : 5 }
+{ "_id" : "9ZZaRLd6AazMLPD1SSRQHw", "avgstar" : 5 }
+{ "_id" : "xYDWwAj_l5XNr6w0VqkRPw", "avgstar" : 5 }
+{ "_id" : "zFJaMw8uz4ZQysu_UG32AQ", "avgstar" : 3.6363636363636362 }
+{ "_id" : "VTzuX23Ug4AL2bfMVg6GJA", "avgstar" : 4.833333333333333 }
+{ "_id" : "6RLOP9tpitlIcEhtlyUlcg", "avgstar" : 5 }
+{ "_id" : "HP9xB7byPB8K1R-eHwBYlA", "avgstar" : 4.666666666666667 }
+{ "_id" : "y2pnhEenSDWB0mLrRwNdlg", "avgstar" : 5 }
 
 
 
