@@ -1,0 +1,208 @@
+login as: root
+root@67.205.143.154's password:
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-31-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Mon Sep 12 12:41:22 EDT 2016
+
+  System load:  0.01               Processes:           127
+  Usage of /:   10.2% of 19.56GB   Users logged in:     1
+  Memory usage: 38%                IP address for eth0: 67.205.143.154
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+14 packages can be updated.
+6 updates are security updates.
+
+New release '16.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2019.
+
+--------------------------------------------------------------------------------                                                                                                             -----
+Thank you for using DigitalOcean's LEMP Application.
+Your web root is located at /usr/share/nginx/html and can be seen from http://67                                                                                                             .205.143.154/
+The details of your PHP installation can be seen at http://67.205.143.154/info.p                                                                                                             hp
+Your MySQL root user's password is a7oLSc7oty
+You are encouraged to run mysql_secure_installation to ready your server for pro                                                                                                             duction.
+--------------------------------------------------------------------------------                                                                                                             -----
+To delete this message of the day: rm -rf /etc/motd.tail
+Last login: Mon Sep 12 12:41:22 2016 from cpe-72-182-145-249.sw.res.rr.com
+root@5303-AdvDB-patil:~# wget https://www.arangodb.com/repositories/arangodb2/xU                                                                                                             buntu_14.04/Release.key
+--2016-09-27 23:41:05--  https://www.arangodb.com/repositories/arangodb2/xUbuntu                                                                                                             _14.04/Release.key
+Resolving www.arangodb.com (www.arangodb.com)... 85.214.140.94
+Connecting to www.arangodb.com (www.arangodb.com)|85.214.140.94|:443... connecte                                                                                                             d.
+HTTP request sent, awaiting response... 200 OK
+Length: 1122 (1.1K) [application/pgp-keys]
+Saving to: ‘Release.key’
+
+100%[======================================>] 1,122       --.-K/s   in 0s
+
+2016-09-27 23:41:06 (39.8 MB/s) - ‘Release.key’ saved [1122/1122]
+
+root@5303-AdvDB-patil:~# sudo apt-key add Release.key
+OK
+root@5303-AdvDB-patil:~# sudo apt-add-repository 'deb https://www.arangodb.com/r                                                                                                             epositories/arangodb2/xUbuntu_14.04/ /'
+root@5303-AdvDB-patil:~# sudo apt-get update
+Get:1 http://security.ubuntu.com trusty-security InRelease [65.9 kB]
+Get:2 http://security.ubuntu.com trusty-security/main Sources [120 kB]
+Get:3 http://security.ubuntu.com trusty-security/universe Sources [42.5 kB]
+Ign http://mirrors.digitalocean.com trusty InRelease
+Get:4 http://security.ubuntu.com trusty-security/main amd64 Packages [531 kB]
+Get:5 http://mirrors.digitalocean.com trusty-updates InRelease [65.9 kB]
+Get:6 http://security.ubuntu.com trusty-security/universe amd64 Packages [137 kB                                                                                                             ]
+Get:7 http://security.ubuntu.com trusty-security/main i386 Packages [492 kB]
+Get:8 http://mirrors.digitalocean.com trusty-backports InRelease [65.9 kB]
+Get:9 http://security.ubuntu.com trusty-security/universe i386 Packages [137 kB]
+Get:10 http://security.ubuntu.com trusty-security/main Translation-en [293 kB]
+Ign https://www.arangodb.com  InRelease
+Get:11 http://security.ubuntu.com trusty-security/universe Translation-en [82.1                                                                                                              kB]
+Hit http://mirrors.digitalocean.com trusty Release.gpg
+Get:12 http://mirrors.digitalocean.com trusty-updates/main Sources [383 kB]
+Get:13 http://mirrors.digitalocean.com trusty-updates/restricted Sources [5,360                                                                                                              B]
+Get:14 http://mirrors.digitalocean.com trusty-updates/universe Sources [165 kB]
+Get:15 http://mirrors.digitalocean.com trusty-updates/multiverse Sources [7,126                                                                                                              B]
+Get:16 http://mirrors.digitalocean.com trusty-updates/main amd64 Packages [901 k                                                                                                             B]
+Ign https://www.arangodb.com  Translation-en_US
+Get:17 http://mirrors.digitalocean.com trusty-updates/restricted amd64 Packages                                                                                                              [15.9 kB]
+Ign https://www.arangodb.com  Translation-en
+Get:18 http://mirrors.digitalocean.com trusty-updates/universe amd64 Packages [3                                                                                                             75 kB]
+Get:19 http://mirrors.digitalocean.com trusty-updates/multiverse amd64 Packages                                                                                                              [14.8 kB]
+Get:20 http://mirrors.digitalocean.com trusty-updates/main i386 Packages [861 kB                                                                                                             ]
+Get:21 http://mirrors.digitalocean.com trusty-updates/restricted i386 Packages [                                                                                                             15.6 kB]
+Get:22 http://mirrors.digitalocean.com trusty-updates/universe i386 Packages [37                                                                                                             7 kB]
+Get:23 http://mirrors.digitalocean.com trusty-updates/multiverse i386 Packages [                                                                                                             15.2 kB]
+Get:24 http://mirrors.digitalocean.com trusty-updates/main Translation-en [437 k                                                                                                             B]
+Get:25 http://mirrors.digitalocean.com trusty-updates/multiverse Translation-en                                                                                                              [7,661 B]
+Get:26 http://mirrors.digitalocean.com trusty-updates/restricted Translation-en                                                                                                              [3,699 B]
+Get:27 http://mirrors.digitalocean.com trusty-updates/universe Translation-en [1                                                                                                             98 kB]
+Get:28 http://mirrors.digitalocean.com trusty-backports/main Sources [9,626 B]
+Get:29 http://mirrors.digitalocean.com trusty-backports/restricted Sources [28 B                                                                                                             ]
+Get:30 http://mirrors.digitalocean.com trusty-backports/universe Sources [35.2 k                                                                                                             B]
+Get:31 http://mirrors.digitalocean.com trusty-backports/multiverse Sources [1,89                                                                                                             8 B]
+Get:32 http://mirrors.digitalocean.com trusty-backports/main amd64 Packages [13.                                                                                                             3 kB]
+Get:33 http://mirrors.digitalocean.com trusty-backports/restricted amd64 Package                                                                                                             s [28 B]
+Get:34 http://mirrors.digitalocean.com trusty-backports/universe amd64 Packages                                                                                                              [43.2 kB]
+Get:35 http://mirrors.digitalocean.com trusty-backports/multiverse amd64 Package                                                                                                             s [1,571 B]
+Get:36 http://mirrors.digitalocean.com trusty-backports/main i386 Packages [13.3                                                                                                              kB]
+Get:37 http://mirrors.digitalocean.com trusty-backports/restricted i386 Packages                                                                                                              [28 B]
+Get:38 http://mirrors.digitalocean.com trusty-backports/universe i386 Packages [                                                                                                             43.2 kB]
+Get:39 http://mirrors.digitalocean.com trusty-backports/multiverse i386 Packages                                                                                                              [1,552 B]
+Get:40 http://mirrors.digitalocean.com trusty-backports/main Translation-en [7,4                                                                                                             93 B]
+Get:41 http://mirrors.digitalocean.com trusty-backports/multiverse Translation-e                                                                                                             n [1,215 B]
+Get:42 http://mirrors.digitalocean.com trusty-backports/restricted Translation-e                                                                                                             n [28 B]
+Get:43 http://mirrors.digitalocean.com trusty-backports/universe Translation-en                                                                                                              [36.8 kB]
+Hit http://mirrors.digitalocean.com trusty Release
+Hit http://mirrors.digitalocean.com trusty/main Sources
+Hit http://mirrors.digitalocean.com trusty/restricted Sources
+Hit http://mirrors.digitalocean.com trusty/universe Sources
+Hit http://mirrors.digitalocean.com trusty/multiverse Sources
+Hit http://mirrors.digitalocean.com trusty/main amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/restricted amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/universe amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/multiverse amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/main i386 Packages
+Hit http://mirrors.digitalocean.com trusty/restricted i386 Packages
+Hit http://mirrors.digitalocean.com trusty/universe i386 Packages
+Hit http://mirrors.digitalocean.com trusty/multiverse i386 Packages
+Hit http://mirrors.digitalocean.com trusty/main Translation-en
+Hit http://mirrors.digitalocean.com trusty/multiverse Translation-en
+Hit http://mirrors.digitalocean.com trusty/restricted Translation-en
+Hit http://mirrors.digitalocean.com trusty/universe Translation-en
+Ign http://mirrors.digitalocean.com trusty/main Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/multiverse Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/restricted Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/universe Translation-en_US
+Fetched 6,028 kB in 18s (323 kB/s)
+Reading package lists... Done
+root@5303-AdvDB-patil:~# sudo apt-get install arangodb
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following extra packages will be installed:
+  libgoogle-perftools4 libtcmalloc-minimal4 libunwind8
+The following NEW packages will be installed:
+  arangodb libgoogle-perftools4 libtcmalloc-minimal4 libunwind8
+0 upgraded, 4 newly installed, 0 to remove and 33 not upgraded.
+Need to get 42.2 MB of archives.
+After this operation, 159 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://mirrors.digitalocean.com/ubuntu/ trusty/main libunwind8 amd64 1.1-2                                                                                                             .2ubuntu3 [48.3 kB]
+Get:2 http://mirrors.digitalocean.com/ubuntu/ trusty-updates/main libtcmalloc-mi                                                                                                             nimal4 amd64 2.1-2ubuntu1.1 [103 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu/ trusty-updates/main libgoogle-perf                                                                                                             tools4 amd64 2.1-2ubuntu1.1 [184 kB]
+Fetched 42.2 MB in 39s (1,064 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package libunwind8.
+(Reading database ... 96246 files and directories currently installed.)
+Preparing to unpack .../libunwind8_1.1-2.2ubuntu3_amd64.deb ...
+Unpacking libunwind8 (1.1-2.2ubuntu3) ...
+Selecting previously unselected package libtcmalloc-minimal4.
+Preparing to unpack .../libtcmalloc-minimal4_2.1-2ubuntu1.1_amd64.deb ...
+Unpacking libtcmalloc-minimal4 (2.1-2ubuntu1.1) ...
+Selecting previously unselected package libgoogle-perftools4.
+Preparing to unpack .../libgoogle-perftools4_2.1-2ubuntu1.1_amd64.deb ...
+Unpacking libgoogle-perftools4 (2.1-2ubuntu1.1) ...
+Selecting previously unselected package arangodb.
+Preparing to unpack .../arangodb_2.8.11_amd64.deb ...
+Unpacking arangodb (2.8.11) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for ureadahead (0.100.0-16) ...
+Setting up libunwind8 (1.1-2.2ubuntu3) ...
+Setting up libtcmalloc-minimal4 (2.1-2ubuntu1.1) ...
+Setting up libgoogle-perftools4 (2.1-2ubuntu1.1) ...
+Setting up arangodb (2.8.11) ...
+Database files are up-to-date.
+ * Starting arango database server arangod                               [ OK ]
+Processing triggers for libc-bin (2.19-0ubuntu6.9) ...
+Processing triggers for ureadahead (0.100.0-16) ...
+root@5303-AdvDB-patil:~# curl http://localhost:8529/_api/version
+{"server":"arango","version":"2.8.11"}root@5303-AdvDB-patil:~# arangosh
+
+                                       _
+  __ _ _ __ __ _ _ __   __ _  ___  ___| |__
+ / _` | '__/ _` | '_ \ / _` |/ _ \/ __| '_ \
+| (_| | | | (_| | | | | (_| | (_) \__ \ | | |
+ \__,_|_|  \__,_|_| |_|\__, |\___/|___/_| |_|
+                       |___/
+
+arangosh (ArangoDB 2.8.11 [linux] 64bit, using tcmalloc, ICU 54.1, V8 4.3.61, Op                                                                                                             enSSL 1.0.1f 6 Jan 2014)
+Copyright (c) ArangoDB GmbH
+
+Pretty printing values.
+Connected to ArangoDB 'tcp://127.0.0.1:8529' version: 2.8.11 [service], database                                                                                                             : '_system', username: 'root'
+
+Please note that a new major version '3.0.10' is available
+Type 'tutorial' for a tutorial or 'help' to see common examples
+arangosh [_system]> 23+2
+25
+
+arangosh [_system]> require("org/arangodb/users").save("prakhya", "123456")
+{
+  "user" : "prakhya",
+  "active" : true,
+  "extra" : {
+  },
+  "changePassword" : false,
+  "code" : 201
+}
+
+arangosh [_system]> exit
+
+<ctrl-D>
+Uf wiederluege! Na shledanou! Auf Wiedersehen! Bye Bye! Adiau! ¡Hasta luego! Au                                                                                                              revoir!
+???????! Arrivederci! ???????! Tot ziens! Adjö! ??? t? epa??de??! ????? ??                                                                                                              ????????! Até Breve!
+root@5303-AdvDB-patil:~# sudo sed -i.bak 's/disable-authentication = yes/disable                                                                                                             -authentication = no/g' /etc/arangodb/arangod.conf
+root@5303-AdvDB-patil:~# sudo service arangodb restart
+ * Stopping arango database server arangod                               [ OK ]
+ * Waiting for shutdown                                                  [ OK ]
+ * Starting arango database server arangod                               [ OK ]
+root@5303-AdvDB-patil:~# sudo nano /etc/arangodb/arangod.conf
+root@5303-AdvDB-patil:~# sudo nano /etc/arangodb/arangosh.conf
+root@5303-AdvDB-patil:~# sudo service arangodb restart
+ * Stopping arango database server arangod                               [ OK ]
+ * Waiting for shutdown                                                  [ OK ]
+ * Starting arango database server arangod                               [ OK ]
+root@5303-AdvDB-patil:~#
